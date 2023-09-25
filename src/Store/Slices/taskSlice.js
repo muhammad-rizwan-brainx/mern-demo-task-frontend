@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addTask } from '../Thunks/taskThunk';
+import { addTask, deleteTask, getTask, getTasks, updateTask } from '../Thunks/taskThunk';
 const taskSlice = createSlice({
   name: 'task',
   initialState: {

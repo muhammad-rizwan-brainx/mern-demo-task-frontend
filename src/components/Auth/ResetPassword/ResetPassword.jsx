@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import './ResetPassword.css'
 
 function Reset() {
+  cost[email, setEmail] = useState()
   return (
     <div className="reset-container">
       <form className="reset-form">

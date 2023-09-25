@@ -1,7 +1,41 @@
 import React from 'react'
 import './EditTask.css'
+import { useState, useEffect } from 'react'
 
 const EditTask = () => {
+    const[formData, setFormData] = useState({
+        title: "",
+        description: "",
+        isCompleted: false
+    })
+
+    const handleFormData = (e) => {
+        if (e.target.getAttribute("name") == "title") {
+          setFormData({
+            ...formData,
+            title: e.target.value,
+          });
+        }
+        if (e.target.getAttribute("name") == "description") {
+          setFormData({
+            ...formData,
+            description: e.target.value,
+          });
+        }
+        if (e.target.getAttribute("name") == "isCompleted") {
+            setFormData({
+              ...formData,
+              description: e.target.value,
+            });
+          }
+      };
+      const handleEditTask = (e) => {
+        e.preventDefault();
+        dispatch(addTask(formData)).then(() => {
+          console.log(e.target.reset())
+        })
+        console.log("formdata", formData);
+      };
   return (
     <div className='edittask-container'>
         <form className='edittask-form' action="">

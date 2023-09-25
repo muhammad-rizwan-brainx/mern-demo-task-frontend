@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import './ChangePassword.css'
 
 function ChangePassword() {
+  const[formData, setFormData] = useState({
+    resetToken: "",
+    password: "",
+    confirmPassword: ""
+  })
   return (
     <div className="changepassword-container">
       <form className="changepassword-form">

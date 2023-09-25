@@ -1,5 +1,16 @@
 import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 const Tasks = () => {
+  const dispatch = useDispatch();
+  const tasks = useSelector((state) => state.task.task);
+
+  const fetchTasks = () => {
+    dispatch(getTask());
+  };
+
+  useEffect(() => {
+    fetchTasks();
+  }, []);
   return (
     <>
       <h3>Completed</h3>
