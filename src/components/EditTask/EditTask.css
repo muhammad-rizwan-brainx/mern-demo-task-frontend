@@ -1,0 +1,13 @@
+.edittask-container {
+    padding: 1rem;
+    height: inherit;
+    margin-top: 10%;
+}
+
+.edittask-form {
+    display: grid;
+    grid-template-rows: 100px 4fr;
+    grid-template-columns: 200px 4fr;
+    gap: 1rem;
+    height: inherit;
+}

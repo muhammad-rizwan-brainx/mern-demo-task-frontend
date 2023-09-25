@@ -1,0 +1,32 @@
+.login-container {
+    padding: 1rem;
+    height: inherit;
+    margin-top: 10%;
+}
+.login-form {
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.login-form input {
+    padding: 1rem;
+    border: none;
+    border-bottom: 1px solid grey;
+}
+
+.login-form .title {
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+.login-form .submit button{
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    background-color:rgb(15, 97, 190);
+    cursor: pointer;
+    color: white;
+}

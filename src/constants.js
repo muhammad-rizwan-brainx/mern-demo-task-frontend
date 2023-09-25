@@ -1,0 +1,1 @@
+export const LOCAL_APIS = 'http://localhost:8088/api/v1'
