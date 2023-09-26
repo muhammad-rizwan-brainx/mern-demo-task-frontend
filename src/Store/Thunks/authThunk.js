@@ -25,7 +25,7 @@ const login = createAsyncThunk("users/login", async (data, thunkAPI) => {
   console.log("inside login thunk", data);
   try {
     const response = await APIS.post(`/users/login`, data);
-
+    console.log(response.data)
     return response.data;
   } catch (error) {
     if (!error.response) {

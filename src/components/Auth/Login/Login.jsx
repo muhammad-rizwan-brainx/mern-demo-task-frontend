@@ -1,12 +1,15 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 import { login } from "../../../Store/Thunks/authThunk";
 import './Login.css'
 
 function Login() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const {formData, setFormData} = useState({
+  const message = useSelector((store) => store.auth.successMsg);
+  const [formData, setFormData] = useState({
     email: "",
     password: ""
   })
@@ -25,14 +28,18 @@ function Login() {
     }
     }
     const handleLogin = (e)=>{
-      e.prevenDefault();
+      e.preventDefault();
       dispatch(login(formData)).then(()=>{
-        e.target.reset();
+        console.log("==================",message)
+        if(message==="successful"){ 
+          console.log("here")
+          navigate("/");
+        }
       })
     }
   return (
     <div className="login-container">
-      <form className="login-form">
+      <form className="login-form" onSubmit={(e) => handleLogin(e)}>
         <h3 className="title">Login</h3>
         <div className="email-control">
           <input name="email" type="email" onChange={(e)=>handleFormData(e)} placeholder="Enter Email" />
