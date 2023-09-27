@@ -41,9 +41,10 @@ const authSlice = createSlice({
       state.isLoading = true;
     });
     builder.addCase(login.fulfilled, (state, action) => {
-      console.log("fulfilled", action.payload);
+      console.log("fulfilled", action.payload.token);
       state.isLoading = false;
       localStorage.setItem("access_token", action.payload.token);
+      state.access_token = action.payload.token;
       state.successMsg = action.payload?.message;
     });
     builder.addCase(login.rejected, (state, action) => {

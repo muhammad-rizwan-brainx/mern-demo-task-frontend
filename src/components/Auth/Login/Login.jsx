@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../../Store/Thunks/authThunk";
-import './Login.css'
+import { NavLink } from "react-router-dom";
+import "./Login.css";
 
 function Login() {
   const navigate = useNavigate();
@@ -11,8 +12,8 @@ function Login() {
   const message = useSelector((store) => store.auth.successMsg);
   const [formData, setFormData] = useState({
     email: "",
-    password: ""
-  })
+    password: "",
+  });
   const handleFormData = (e) => {
     if (e.target.getAttribute("name") == "email") {
       setFormData({
@@ -26,30 +27,52 @@ function Login() {
         password: e.target.value,
       });
     }
-    }
-    const handleLogin = (e)=>{
-      e.preventDefault();
-      dispatch(login(formData)).then(()=>{
-        console.log("==================",message)
-        if(message==="successful"){ 
-          console.log("here")
-          navigate("/");
-        }
+  };
+  const handleLogin = (e) => {
+    e.preventDefault();
+    dispatch(login(formData))
+      .unwrap()
+      .then(() => {
+        console.log("==================", message);
+        navigate("/");
       })
-    }
+      .catch(() => {
+        alert("login error")
+        console.log("error login");
+      });
+  };
+  // useEffect(()=>{
+  //   if(message==="successful"){
+  //     console.log("here")
+  //     navigate("/");
+  //   }
+  // },[message]);
   return (
     <div className="login-container">
       <form className="login-form" onSubmit={(e) => handleLogin(e)}>
         <h3 className="title">Login</h3>
         <div className="email-control">
-          <input name="email" type="email" onChange={(e)=>handleFormData(e)} placeholder="Enter Email" />
+          <input
+            name="email"
+            type="email"
+            onChange={(e) => handleFormData(e)}
+            placeholder="Enter Email"
+          />
         </div>
         <div className="password-control">
-          <input name="password" type="password" onChange={(e)=>handleFormData(e)} placeholder="Enter Password" />
+          <input
+            name="password"
+            type="password"
+            onChange={(e) => handleFormData(e)}
+            placeholder="Enter Password"
+          />
         </div>
         <div className="submit">
           <button type="submit">Login</button>
         </div>
+        <NavLink className="pending" to="/signup">
+        Don't have account Signup?
+      </NavLink>
       </form>
     </div>
   );

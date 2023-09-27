@@ -14,7 +14,7 @@ const Tasks = () => {
   // }, []);
   return (
     <>
-      <h3>Completed</h3>
+      <h3>All Tasks</h3>
       <table className="all-tasks">
         <thead>
           <tr>
