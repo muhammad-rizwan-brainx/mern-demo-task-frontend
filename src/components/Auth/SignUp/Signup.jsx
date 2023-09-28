@@ -1,13 +1,15 @@
 import React from "react";
 import { useState } from "react";
 import {useDispatch} from 'react-redux'
+import { useNavigate } from "react-router-dom";
 import "./Signup.css";
 import { signup } from "../../../Store/Thunks/authThunk";
 
 function Signup() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [formData, setformData] = useState({
-    name: "",
+    userName: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -16,7 +18,7 @@ function Signup() {
     if (e.target.getAttribute("name") == "name") {
       setformData({
         ...formData,
-        name: e.target.value,
+        userName: e.target.value,
       });
     }
     if (e.target.getAttribute("name") == "email") {
@@ -45,11 +47,15 @@ function Signup() {
   };
   const handleSignup = (e) => {
     e.preventDefault();
-    dispatch(signup(formData)).then(() => {
-      console.log(e.target.reset())
+    dispatch(signup(formData)).unwrap()
+    .then(() => {
+      navigate("/login");
     })
-    console.log("formdata", formData);
-  };
+    .catch(() => {
+      alert("Signup error")
+      console.log("error signup");
+    });
+  }
   return (
     <div className="signup-container">
       <form className="signup-form" onSubmit={(e) => handleSignup(e)}>

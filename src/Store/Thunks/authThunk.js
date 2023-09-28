@@ -4,7 +4,7 @@ import axios from "axios";
 
 
 const signup = createAsyncThunk("users/signup", async (data, thunkAPI) => {
-  console.log("inside login thunk", data);
+  console.log("inside SignUp thunk", data);
   try {
     const response = await APIS.post(`/users/signup`, data);
 
@@ -41,7 +41,7 @@ const login = createAsyncThunk("users/login", async (data, thunkAPI) => {
 const forgotpassword = createAsyncThunk("users/forgotpassword", async (data, thunkAPI) => {
   console.log("inside forgotPassword thunk", data);
   try {
-    const response = await APIS.post(`/users/forgotpassword`, data);
+    const response = await APIS.put(`/users/forgotpassword`, data);
     return response.data;
   } catch (error) {
     if (!error.response) {
@@ -57,7 +57,7 @@ const forgotpassword = createAsyncThunk("users/forgotpassword", async (data, thu
 const changepassword = createAsyncThunk("users/changepassword", async (data, thunkAPI) => {
   console.log("inside changepassword thunk", data);
   try {
-    const response = await APIS.post(`/users/changepassword`, data);
+    const response = await APIS.put(`/users/changepassword`, data);
     return response.data;
   } catch (error) {
     if (!error.response) {

@@ -33,20 +33,13 @@ function Login() {
     dispatch(login(formData))
       .unwrap()
       .then(() => {
-        console.log("==================", message);
         navigate("/");
       })
       .catch(() => {
-        alert("login error")
+        alert("login error");
         console.log("error login");
       });
   };
-  // useEffect(()=>{
-  //   if(message==="successful"){
-  //     console.log("here")
-  //     navigate("/");
-  //   }
-  // },[message]);
   return (
     <div className="login-container">
       <form className="login-form" onSubmit={(e) => handleLogin(e)}>
@@ -70,9 +63,12 @@ function Login() {
         <div className="submit">
           <button type="submit">Login</button>
         </div>
-        <NavLink className="pending" to="/signup">
-        Don't have account Signup?
-      </NavLink>
+        <NavLink className="signup" to="/signup">
+           Signup
+        </NavLink>
+        <NavLink className="forgot-password" to="/forgotpassword">
+           Forgot Password?
+        </NavLink>
       </form>
     </div>
   );

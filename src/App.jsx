@@ -8,6 +8,8 @@ import Completed from "./components/Completed/Completed";
 import Pending from "./components/Pending/Pending";
 import "./App.css";
 import Signup from "./components/Auth/SignUp/Signup"
+import ResetPassword from "./components/Auth/ResetPassword/ResetPassword"
+import ChangePassword from "./components/Auth/ChangePaswaord/ChangePassword"
 import Login from "./components/Auth/Login/Login";
 import { useSelector } from "react-redux";
 
@@ -45,6 +47,8 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/forgotpassword" element={<ResetPassword />} />
+          <Route path="/changepassword" element={<ChangePassword />} />
         </Routes>
       )}
     </>

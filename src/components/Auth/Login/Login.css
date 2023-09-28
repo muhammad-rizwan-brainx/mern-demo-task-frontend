@@ -30,3 +30,9 @@
     cursor: pointer;
     color: white;
 }
+
+.login-form .auth-links{
+    display: flex;
+    margin: 2rem;
+    color: blue;
+}
