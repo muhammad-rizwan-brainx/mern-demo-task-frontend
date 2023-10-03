@@ -1,13 +1,15 @@
 import React from "react";
 import "./Profile.css";
 import profilepic from "../../assets/asdf.png";
-const Profile = () => {
+import {useSelector } from "react-redux";
+const Profile = (props) => {
+  console.log(props)
   return (
     <div className="profile">
       <div>
         <img src={profilepic} alt="" />
       </div>
-      <div className="username">Rizwan</div>
+      <div className="username">{props.name}</div>
     </div>
   );
 };

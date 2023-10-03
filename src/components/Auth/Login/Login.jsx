@@ -9,7 +9,7 @@ import "./Login.css";
 function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const message = useSelector((store) => store.auth.successMsg);
+  //const message = useSelector((store) => store.auth.successMsg);
   const [formData, setFormData] = useState({
     email: "",
     password: "",

@@ -16,7 +16,8 @@ import { useSelector } from "react-redux";
 function App() {
   console.log("App render===");
   const access_token = useSelector((store) => store?.auth?.access_token);
- 
+  const user = useSelector((store) => store?.auth?.user);
+  const userName = user?.userName;
   return (
     <>
       {access_token ? (
@@ -28,7 +29,7 @@ function App() {
                 <h3>TaskTacker</h3>
               </div>
               <div className="profile">
-                <Profile />
+                <Profile name={userName} />
               </div>
             </div>
             <div className="sidebar grid-item">

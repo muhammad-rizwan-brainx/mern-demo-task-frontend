@@ -1,17 +1,17 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import {getTasks} from "../../Store/Thunks/taskThunk"
 
 const Tasks = () => {
-  // const dispatch = useDispatch();
-  // const tasks = useSelector((state) => state.task.task);
+  const dispatch = useDispatch();
+  const tasks = useSelector((state) => state.task.tasks);
 
-  // const fetchTasks = () => {
-  //   dispatch(getTask());
-  // };
-
-  // useEffect(() => {
-  //   fetchTasks();
-  // }, []);
+  const getp = () => {
+    dispatch(getTasks());
+  };
+  useEffect(() => {
+    getp();
+  }, []);
   return (
     <>
       <h3>All Tasks</h3>
@@ -25,18 +25,14 @@ const Tasks = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Data 1A</td>
-            <td>Data 1B</td>
-            <td>Data 1C</td>
-            <td>Data 1D</td>
-          </tr>
-          <tr>
-            <td>Data 2A</td>
-            <td>Data 2B</td>
-            <td>Data 2C</td>
-            <td>Data 2D</td>
-          </tr>
+          {tasks?.map((task, index) => (
+            <tr key={task?._id}>
+              <td>{index+1}</td>
+              <td>{task?.title}</td>
+              <td>{task?.description}</td>
+              <td>{task?.isCompleted == true ? "completed" : "Pending"}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </>

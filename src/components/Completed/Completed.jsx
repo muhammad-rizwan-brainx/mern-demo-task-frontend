@@ -1,7 +1,19 @@
 import React from "react";
 import "./Completed.css";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getTasks } from "../../Store/Thunks/taskThunk";
 
 const Completed = () => {
+  const dispatch = useDispatch();
+  const tasks = useSelector((state) => state.task.tasks);
+
+  const getp = () => {
+    dispatch(getTasks());
+  };
+  useEffect(() => {
+    getp();
+  }, []);
   return (
     <>
       <h3>Completed</h3>
@@ -15,18 +27,14 @@ const Completed = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Data 1A</td>
-            <td>Data 1B</td>
-            <td>Data 1C</td>
-            <td>Data 1D</td>
-          </tr>
-          <tr>
-            <td>Data 2A</td>
-            <td>Data 2B</td>
-            <td>Data 2C</td>
-            <td>Data 2D</td>
-          </tr>
+        {tasks?.map((task, index) => (
+            <tr key={task?._id}>
+              <td>{index+1}</td>
+              <td>{task?.title}</td>
+              <td>{task?.description}</td>
+              <td><button>Edit</button></td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </>

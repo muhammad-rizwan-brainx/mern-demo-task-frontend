@@ -6,7 +6,7 @@ import axios from "axios";
 const addTask = createAsyncThunk("tasks/addTask", async (data, thunkAPI) => {
   console.log("inside addTask thunk", data);
   try {
-    const response = await APIS.post(`/users/addTask`, data);
+    const response = await APIS.post(`/tasks/`, data);
 
     return response.data;
   } catch (error) {
@@ -20,10 +20,10 @@ const addTask = createAsyncThunk("tasks/addTask", async (data, thunkAPI) => {
   }
 });
 
-const getTask = createAsyncThunk("tasks/getTask", async (data, thunkAPI) => {
+const getTask = createAsyncThunk("tasks/getTask", async (id, data, thunkAPI) => {
   console.log("inside addTask thunk", data);
   try {
-    const response = await APIS.post(`/users/getTask`, data);
+    const response = await APIS.post(`/tasks/${id}`, data);
 
     return response.data;
   } catch (error) {
@@ -37,11 +37,9 @@ const getTask = createAsyncThunk("tasks/getTask", async (data, thunkAPI) => {
   }
 });
 
-const getTasks = createAsyncThunk("tasks/getTasks", async (data, thunkAPI) => {
-  console.log("inside addTask thunk", data);
+const getTasks = createAsyncThunk("tasks/getTasks", async (thunkAPI) => {
   try {
-    const response = await APIS.post(`/users/getTasks`, data);
-
+    const response = await APIS.get(`/tasks/`)
     return response.data;
   } catch (error) {
     if (!error.response) {
@@ -57,7 +55,7 @@ const getTasks = createAsyncThunk("tasks/getTasks", async (data, thunkAPI) => {
 const deleteTask = createAsyncThunk("tasks/deleteTask", async (data, thunkAPI) => {
   console.log("inside addTask thunk", data);
   try {
-    const response = await APIS.post(`/users/deleteTask`, data);
+    const response = await APIS.post(`/tasks/`, data);
 
     return response.data;
   } catch (error) {
@@ -74,7 +72,7 @@ const deleteTask = createAsyncThunk("tasks/deleteTask", async (data, thunkAPI) =
 const updateTask = createAsyncThunk("tasks/updateTask", async (data, thunkAPI) => {
   console.log("inside addTask thunk", data);
   try {
-    const response = await APIS.post(`/users/updateTask`, data);
+    const response = await APIS.post(`/tasks/`, data);
 
     return response.data;
   } catch (error) {
