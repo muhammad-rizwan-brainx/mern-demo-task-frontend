@@ -6,6 +6,8 @@ import Sidebar from "./components/Sidebar/Sidebar";
 import Tasks from "./components/Tasks/Tasks";
 import Completed from "./components/Completed/Completed";
 import Pending from "./components/Pending/Pending";
+import AddTask from "./components/AddTask/AddTask"
+import EditTask from "./components/EditTask/EditTask";
 import "./App.css";
 import Signup from "./components/Auth/SignUp/Signup"
 import ResetPassword from "./components/Auth/ResetPassword/ResetPassword"
@@ -40,6 +42,8 @@ function App() {
                 <Route index element={<Tasks />} />
                 <Route path="completed" element={<Completed />} />
                 <Route path="pending" element={<Pending />} />
+                <Route path="addtask" element={<AddTask />} />
+                <Route path="edittask" element={<EditTask />} />
               </Routes>
             </div>
           </div>

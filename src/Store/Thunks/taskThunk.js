@@ -55,8 +55,23 @@ const getTasks = createAsyncThunk("tasks/getTasks", async (thunkAPI) => {
 const deleteTask = createAsyncThunk("tasks/deleteTask", async (data, thunkAPI) => {
   console.log("inside addTask thunk", data);
   try {
-    const response = await APIS.post(`/tasks/`, data);
+    const response = await APIS.delete(`/tasks/${data.id}`);
+    return response.data;
+  } catch (error) {
+    if (!error.response) {
+      throw error;
+    }
+    return thunkAPI.rejectWithValue({
+      statusCode: error.response.status,
+      message: error.response.data.error,
+    });
+  }
+});
 
+const completeTask = createAsyncThunk("tasks/completeTask", async (data, thunkAPI) => {
+  console.log("inside addTask thunk", data);
+  try {
+    const response = await APIS.put(`/tasks/${data.id}`);
     return response.data;
   } catch (error) {
     if (!error.response) {
@@ -87,4 +102,4 @@ const updateTask = createAsyncThunk("tasks/updateTask", async (data, thunkAPI) =
 });
 
 
-export {addTask, getTask, getTasks, deleteTask, updateTask};
+export {addTask, getTask, getTasks, deleteTask, updateTask, completeTask};

@@ -5,6 +5,9 @@ import { NavLink } from "react-router-dom";
 const Sidebar = () => {
   return (
     <div className={styles.sidebar}>
+      <NavLink className="task-list" to="/addtask">
+        Add New Task
+      </NavLink>
       <NavLink className="task-list" to="/">
         All Tasks
       </NavLink>

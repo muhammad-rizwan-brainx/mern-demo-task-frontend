@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addTask, deleteTask, getTask, getTasks, updateTask } from '../Thunks/taskThunk';
+import { addTask, deleteTask, getTask, getTasks, updateTask, completeTask } from '../Thunks/taskThunk';
 const taskSlice = createSlice({
   name: 'task',
   initialState: {
@@ -74,6 +74,23 @@ const taskSlice = createSlice({
       console.log('fulfilled');
     });
     builder.addCase(getTask.rejected, (state, action) => {
+      state.isLoading = false;
+      state.errorMsg = action.payload?.message;
+      console.log('rejected', action.payload);
+    });
+
+
+    builder.addCase(completeTask.pending, (state, action) => {
+      console.log('pending');
+      state.successMsg = '';
+      state.isLoading = true;
+    });
+    builder.addCase(completeTask.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.successMsg = action.payload?.message;
+      console.log('fulfilled');
+    });
+    builder.addCase(completeTask.rejected, (state, action) => {
       state.isLoading = false;
       state.errorMsg = action.payload?.message;
       console.log('rejected', action.payload);

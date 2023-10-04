@@ -2,7 +2,8 @@ import React from 'react'
 import './EditTask.css'
 import { useState, useEffect } from 'react'
 
-const EditTask = () => {
+const EditTask = (props) => {
+  console.log(props)
     const[formData, setFormData] = useState({
         title: "",
         description: "",

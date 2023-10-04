@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {getTasks} from "../../Store/Thunks/taskThunk"
+import { getTasks, deleteTask, completeTask} from "../../Store/Thunks/taskThunk";
 
 const Tasks = () => {
   const dispatch = useDispatch();
@@ -22,15 +22,21 @@ const Tasks = () => {
             <th className="a-title">Title</th>
             <th className="a-description">Description</th>
             <th className="a-status">Status</th>
+            <th className="action-class">Action</th>
           </tr>
         </thead>
         <tbody>
           {tasks?.map((task, index) => (
             <tr key={task?._id}>
-              <td>{index+1}</td>
+              <td>{index + 1}</td>
               <td>{task?.title}</td>
               <td>{task?.description}</td>
               <td>{task?.isCompleted == true ? "completed" : "Pending"}</td>
+              <td>
+                <button onClick={()=>{
+                  dispatch(deleteTask({id:task._id}))
+                }}>Delete</button>
+              </td>
             </tr>
           ))}
         </tbody>

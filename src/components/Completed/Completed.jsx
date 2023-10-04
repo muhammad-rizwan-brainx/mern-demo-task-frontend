@@ -27,14 +27,23 @@ const Completed = () => {
           </tr>
         </thead>
         <tbody>
-        {tasks?.map((task, index) => (
-            <tr key={task?._id}>
-              <td>{index+1}</td>
-              <td>{task?.title}</td>
-              <td>{task?.description}</td>
-              <td><button>Edit</button></td>
-            </tr>
-          ))}
+          {tasks
+            ?.filter((task) => task?.isCompleted === true)
+            .map((task, index) => (
+              <tr key={task?._id}>
+                <td>{index + 1}</td>
+                <td>{task?.title}</td>
+                <td>{task?.description}</td>
+                <td>
+                  Completed
+                </td>
+                <td>
+                  <button>
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
         </tbody>
       </table>
     </>
