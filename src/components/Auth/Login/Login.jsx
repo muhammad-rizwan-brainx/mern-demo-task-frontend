@@ -1,19 +1,20 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { login } from "../../../Store/Thunks/authThunk";
+import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { login } from "../../../Store/Thunks/authThunk";
 import "./Login.css";
 
 function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  //const message = useSelector((store) => store.auth.successMsg);
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+
   const handleFormData = (e) => {
     if (e.target.getAttribute("name") == "email") {
       setFormData({
@@ -28,6 +29,7 @@ function Login() {
       });
     }
   };
+
   const handleLogin = (e) => {
     e.preventDefault();
     dispatch(login(formData))
@@ -40,6 +42,7 @@ function Login() {
         console.log("error login");
       });
   };
+
   return (
     <div className="login-container">
       <form className="login-form" onSubmit={(e) => handleLogin(e)}>
@@ -64,10 +67,10 @@ function Login() {
           <button type="submit">Login</button>
         </div>
         <NavLink className="signup" to="/signup">
-           Signup
+          Signup
         </NavLink>
         <NavLink className="forgot-password" to="/forgotpassword">
-           Forgot Password?
+          Forgot Password?
         </NavLink>
       </form>
     </div>

@@ -17,7 +17,7 @@ const authSlice = createSlice({
     errorMsg: "",
   },
   extraReducers(builder) {
-    //signup reducers
+
     builder.addCase(signup.pending, (state, action) => {
       console.log("pending");
       state.successMsg = "";
@@ -34,7 +34,7 @@ const authSlice = createSlice({
       console.log("rejected", action.payload);
     });
 
-    //login reducers
+
     builder.addCase(login.pending, (state, action) => {
       console.log("pending");
       state.successMsg = "";
@@ -54,7 +54,6 @@ const authSlice = createSlice({
       console.log("rejected", action.payload);
     });
 
-    //forgotpassword reducers
     builder.addCase(forgotpassword.pending, (state, action) => {
       console.log("pending");
       state.successMsg = "";
@@ -70,7 +69,8 @@ const authSlice = createSlice({
       state.errorMsg = action.payload?.message;
       console.log("rejected", action.payload);
     });
-    //changepassword reducers
+
+    
     builder.addCase(changepassword.pending, (state, action) => {
       console.log("pending");
       state.successMsg = "";

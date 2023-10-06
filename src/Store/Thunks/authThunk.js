@@ -1,10 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { APIS } from "../axios.config";
-import axios from "axios";
-
 
 const signup = createAsyncThunk("users/signup", async (data, thunkAPI) => {
-  console.log("inside SignUp thunk", data);
   try {
     const response = await APIS.post(`/users/signup`, data);
 
@@ -22,7 +19,6 @@ const signup = createAsyncThunk("users/signup", async (data, thunkAPI) => {
 
 
 const login = createAsyncThunk("users/login", async (data, thunkAPI) => {
-  console.log("inside login thunk", data);
   try {
     const response = await APIS.post(`/users/login`, data);
     console.log(response.data)
@@ -39,7 +35,6 @@ const login = createAsyncThunk("users/login", async (data, thunkAPI) => {
 });
 
 const forgotpassword = createAsyncThunk("users/forgotpassword", async (data, thunkAPI) => {
-  console.log("inside forgotPassword thunk", data);
   try {
     const response = await APIS.put(`/users/forgotpassword`, data);
     return response.data;
@@ -55,7 +50,6 @@ const forgotpassword = createAsyncThunk("users/forgotpassword", async (data, thu
 });
 
 const changepassword = createAsyncThunk("users/changepassword", async (data, thunkAPI) => {
-  console.log("inside changepassword thunk", data);
   try {
     const response = await APIS.put(`/users/changepassword`, data);
     return response.data;

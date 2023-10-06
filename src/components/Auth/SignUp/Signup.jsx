@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import {useDispatch} from 'react-redux'
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import "./Signup.css";
 import { signup } from "../../../Store/Thunks/authThunk";
@@ -8,12 +8,14 @@ import { signup } from "../../../Store/Thunks/authThunk";
 function Signup() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const [formData, setformData] = useState({
     userName: "",
     email: "",
     password: "",
     confirmPassword: "",
   });
+
   const handleFormData = (e) => {
     if (e.target.getAttribute("name") == "name") {
       setformData({
@@ -34,28 +36,32 @@ function Signup() {
       });
     }
     if (e.target.getAttribute("name") == "confirmPassword") {
-      if(formData.password != e.target.value){
-        console.log(formData.password)
-        e.target.style.color = "red"
-      } else{
-      e.target.style.color = ""}
+      if (formData.password != e.target.value) {
+        console.log(formData.password);
+        e.target.style.color = "red";
+      } else {
+        e.target.style.color = "";
+      }
       setformData({
         ...formData,
         confirmPassword: e.target.value,
       });
     }
   };
+
   const handleSignup = (e) => {
     e.preventDefault();
-    dispatch(signup(formData)).unwrap()
-    .then(() => {
-      navigate("/login");
-    })
-    .catch(() => {
-      alert("Signup error")
-      console.log("error signup");
-    });
-  }
+    dispatch(signup(formData))
+      .unwrap()
+      .then(() => {
+        navigate("/login");
+      })
+      .catch(() => {
+        alert("Signup error");
+        console.log("error signup");
+      });
+  };
+
   return (
     <div className="signup-container">
       <form className="signup-form" onSubmit={(e) => handleSignup(e)}>
@@ -78,7 +84,7 @@ function Signup() {
         </div>
         <div className="password-control">
           <input
-          className="sss"
+            className="sss"
             name="password"
             onChange={(e) => handleFormData(e)}
             type="password"

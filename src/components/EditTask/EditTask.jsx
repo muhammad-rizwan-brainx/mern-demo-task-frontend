@@ -1,65 +1,65 @@
-import React from 'react'
-import './EditTask.css'
-import { useState, useEffect } from 'react'
+import React from "react";
+import "./EditTask.css";
+import { useState, useEffect } from "react";
 
 const EditTask = (props) => {
-  console.log(props)
-    const[formData, setFormData] = useState({
-        title: "",
-        description: "",
-        isCompleted: false
-    })
+  console.log(props);
+  const [formData, setFormData] = useState({
+    title: "",
+    description: "",
+    isCompleted: false,
+  });
 
-    const handleFormData = (e) => {
-        if (e.target.getAttribute("name") == "title") {
-          setFormData({
-            ...formData,
-            title: e.target.value,
-          });
-        }
-        if (e.target.getAttribute("name") == "description") {
-          setFormData({
-            ...formData,
-            description: e.target.value,
-          });
-        }
-        if (e.target.getAttribute("name") == "isCompleted") {
-            setFormData({
-              ...formData,
-              description: e.target.value,
-            });
-          }
-      };
-      const handleEditTask = (e) => {
-        e.preventDefault();
-        dispatch(addTask(formData)).then(() => {
-          console.log(e.target.reset())
-        })
-        console.log("formdata", formData);
-      };
+  const handleFormData = (e) => {
+    if (e.target.getAttribute("name") == "title") {
+      setFormData({
+        ...formData,
+        title: e.target.value,
+      });
+    }
+    if (e.target.getAttribute("name") == "description") {
+      setFormData({
+        ...formData,
+        description: e.target.value,
+      });
+    }
+    if (e.target.getAttribute("name") == "isCompleted") {
+      setFormData({
+        ...formData,
+        description: e.target.value,
+      });
+    }
+  };
+  const handleEditTask = (e) => {
+    e.preventDefault();
+    dispatch(addTask(formData)).then(() => {
+      console.log(e.target.reset());
+    });
+    console.log("formdata", formData);
+  };
   return (
-    <div className='edittask-container'>
-        <form className='edittask-form' action="">
-            <h3 className='title'>Edit Task</h3>
-            <div className="title">
-                <label htmlFor="title">Title</label>
-                <input name='title' type="text" />
-            </div>
-            <div className="description">
-                <label htmlFor="description">Description</label>
-                <input name='description' type="text" />
-            </div>
-            <div className="iscompleted">
-                <label htmlFor="isCompleted">IsCompleted</label>
-            <input type="radio" name="completed" value="true"/> Yes
-            <input type="radio" name="completed" value="false" /> No
-            </div>
-            <div className="submit">
-                <button type='submit'>Edit</button>
-            </div>
-        </form>
+    <div className="edittask-container">
+      <form className="edittask-form" action="">
+        <h3 className="title">Edit Task</h3>
+        <div className="title">
+          <label htmlFor="title">Title</label>
+          <input name="title" type="text" />
+        </div>
+        <div className="description">
+          <label htmlFor="description">Description</label>
+          <input name="description" type="text" />
+        </div>
+        <div className="iscompleted">
+          <label htmlFor="isCompleted">IsCompleted</label>
+          <input type="radio" name="completed" value="true" /> Yes
+          <input type="radio" name="completed" value="false" /> No
+        </div>
+        <div className="submit">
+          <button type="submit">Edit</button>
+        </div>
+      </form>
     </div>
-  )
-}
+  );
+};
 
-export default EditTask
+export default EditTask;

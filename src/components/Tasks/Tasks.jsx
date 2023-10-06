@@ -1,17 +1,22 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getTasks, deleteTask, completeTask} from "../../Store/Thunks/taskThunk";
+import { deleteTask } from "../../Store/Thunks/taskThunk";
 
 const Tasks = () => {
   const dispatch = useDispatch();
-  const tasks = useSelector((state) => state.task.tasks);
-
-  const getp = () => {
-    dispatch(getTasks());
+  var tasks = useSelector((state) => state.task.tasks);
+  const handleDelete = (id) => {
+    {
+      dispatch(deleteTask({ id: id }))
+        .unwrap()
+        .then(() => {
+          tasks = tasks.filter((task) => task._id !== id);
+        });
+    }
   };
-  useEffect(() => {
-    getp();
-  }, []);
+
+  useEffect(() => {}, [tasks]);
+
   return (
     <>
       <h3>All Tasks</h3>
@@ -33,9 +38,7 @@ const Tasks = () => {
               <td>{task?.description}</td>
               <td>{task?.isCompleted == true ? "completed" : "Pending"}</td>
               <td>
-                <button onClick={()=>{
-                  dispatch(deleteTask({id:task._id}))
-                }}>Delete</button>
+                <button onClick={() => handleDelete(task._id)}>Delete</button>
               </td>
             </tr>
           ))}

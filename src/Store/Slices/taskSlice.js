@@ -12,7 +12,7 @@ const taskSlice = createSlice({
     errorMsg: '',
   },
   extraReducers(builder) {
-    //signup reducers
+    
     builder.addCase(addTask.pending, (state, action) => {
       console.log('pending');
       state.successMsg = '';
@@ -29,6 +29,7 @@ const taskSlice = createSlice({
       console.log('rejected', action.payload);
     });
 
+
     builder.addCase(deleteTask.pending, (state, action) => {
       console.log('pending');
       state.successMsg = '';
@@ -44,6 +45,7 @@ const taskSlice = createSlice({
       state.errorMsg = action.payload?.message;
       console.log('rejected', action.payload);
     });
+
 
     builder.addCase(getTasks.pending, (state, action) => {
       console.log('pending');
@@ -63,6 +65,7 @@ const taskSlice = createSlice({
       console.log('rejected', action.payload);
     });
 
+    
     builder.addCase(getTask.pending, (state, action) => {
       console.log('pending');
       state.successMsg = '';

@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import "./ChangePassword.css";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { changepassword } from "../../../Store/Thunks/authThunk";
+import "./ChangePassword.css";
+
 function ChangePassword() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const [formData, setFormData] = useState({
     resetPasswordToken: "",
     password: "",
@@ -13,6 +15,7 @@ function ChangePassword() {
   });
 
   const handleFormData = (e) => {
+    
     if (e.target.getAttribute("name") == "reset-token") {
       setFormData({
         ...formData,
@@ -55,7 +58,12 @@ function ChangePassword() {
 
   return (
     <div className="changepassword-container">
-      <form className="changepassword-form" onSubmit={(e)=>{handleChangePassword(e)}}>
+      <form
+        className="changepassword-form"
+        onSubmit={(e) => {
+          handleChangePassword(e);
+        }}
+      >
         <h3 className="title">Change Password</h3>
         <div className="reset-token-control">
           <input

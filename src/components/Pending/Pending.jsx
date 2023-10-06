@@ -1,20 +1,23 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { useEffect } from "react";
-import { getTasks } from "../../Store/Thunks/taskThunk";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { updateTask } from "../../Store/Thunks/taskThunk";
+import { getTasks } from "../../Store/Thunks/taskThunk";
+import { completeTask } from "../../Store/Thunks/taskThunk";
 import "./Pending.css";
+
 const Pending = () => {
   const dispatch = useDispatch();
   const tasks = useSelector((state) => state.task.tasks);
 
-  const getp = () => {
+  const gatTasks = () => {
     dispatch(getTasks());
   };
+
   useEffect(() => {
-    getp();
+    gatTasks();
   }, []);
+
   return (
     <>
       <h3>Pending</h3>
@@ -41,7 +44,13 @@ const Pending = () => {
                       Edit
                     </Link>
                   </button>
-                  <button>Complete</button>
+                  <button
+                    onClick={() => {
+                      dispatch(completeTask({ id: task._id }));
+                    }}
+                  >
+                    Complete
+                  </button>
                 </td>
               </tr>
             ))}

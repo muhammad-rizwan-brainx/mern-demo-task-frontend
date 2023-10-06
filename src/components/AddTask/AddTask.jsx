@@ -1,13 +1,12 @@
-import React from 'react'
-import { useState } from 'react';
-import { addTask } from '../../Store/Thunks/taskThunk';
+import React from "react";
+import { useState } from "react";
+import { addTask } from "../../Store/Thunks/taskThunk";
 
 const AddTask = () => {
-
   const [formData, setFormData] = useState({
-    title : "",
+    title: "",
     description: "",
-    isCompleted: false
+    isCompleted: false,
   });
 
   const handleFormData = (e) => {
@@ -24,31 +23,33 @@ const AddTask = () => {
       });
     }
   };
+
   const handleAddTask = (e) => {
     e.preventDefault();
     dispatch(addTask(formData)).then(() => {
-      console.log(e.target.reset())
-    })
+      console.log(e.target.reset());
+    });
     console.log("formdata", formData);
   };
+
   return (
-    <div className='addtask-container'>
-      <form className='addtask-form'>
-        <h3 className='title'>Add Task</h3>
+    <div className="addtask-container">
+      <form className="addtask-form">
+        <h3 className="title">Add Task</h3>
         <div className="title">
           <label htmlFor="title">Title</label>
-          <input name='title' type="text" />
+          <input name="title" type="text" />
         </div>
         <div className="description">
           <label htmlFor="description"></label>
-          <input name='description' type="text" />
+          <input name="description" type="text" />
         </div>
         <div className="submit">
-          <button type='submit'>Add</button>
+          <button type="submit">Add</button>
         </div>
       </form>
     </div>
-  )
-}
+  );
+};
 
 export default AddTask;

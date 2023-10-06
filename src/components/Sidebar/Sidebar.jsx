@@ -18,7 +18,6 @@ const Sidebar = () => {
         Pending
       </NavLink>
     </div>
-    
   );
 };
 

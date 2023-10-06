@@ -1,22 +1,20 @@
-import { Fragment, useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import logo from "./assets/logo.png";
+import { useSelector } from "react-redux";
+import {Routes, Route } from "react-router-dom";
 import Profile from "./components/Profile/Profile";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Tasks from "./components/Tasks/Tasks";
 import Completed from "./components/Completed/Completed";
 import Pending from "./components/Pending/Pending";
-import AddTask from "./components/AddTask/AddTask"
+import AddTask from "./components/AddTask/AddTask";
 import EditTask from "./components/EditTask/EditTask";
-import "./App.css";
-import Signup from "./components/Auth/SignUp/Signup"
-import ResetPassword from "./components/Auth/ResetPassword/ResetPassword"
-import ChangePassword from "./components/Auth/ChangePaswaord/ChangePassword"
+import Signup from "./components/Auth/SignUp/Signup";
+import ResetPassword from "./components/Auth/ResetPassword/ResetPassword";
+import ChangePassword from "./components/Auth/ChangePaswaord/ChangePassword";
 import Login from "./components/Auth/Login/Login";
-import { useSelector } from "react-redux";
+import "./App.css";
 
 function App() {
-  console.log("App render===");
   const access_token = useSelector((store) => store?.auth?.access_token);
   const user = useSelector((store) => store?.auth?.user);
   const userName = user?.userName;

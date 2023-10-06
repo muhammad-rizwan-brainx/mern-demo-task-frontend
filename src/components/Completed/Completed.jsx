@@ -1,19 +1,20 @@
 import React from "react";
-import "./Completed.css";
-import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { getTasks } from "../../Store/Thunks/taskThunk";
+import "./Completed.css";
 
 const Completed = () => {
   const dispatch = useDispatch();
   const tasks = useSelector((state) => state.task.tasks);
 
-  const getp = () => {
+  const getTask = () => {
     dispatch(getTasks());
   };
   useEffect(() => {
-    getp();
+    getTask();
   }, []);
+  
   return (
     <>
       <h3>Completed</h3>
@@ -34,13 +35,9 @@ const Completed = () => {
                 <td>{index + 1}</td>
                 <td>{task?.title}</td>
                 <td>{task?.description}</td>
+                <td>Completed</td>
                 <td>
-                  Completed
-                </td>
-                <td>
-                  <button>
-                    Delete
-                  </button>
+                  <button>Delete</button>
                 </td>
               </tr>
             ))}
